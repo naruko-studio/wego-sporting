@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id              String    @id
+  id              String        @id
   name            String
   email           String
   emailVerified   Boolean
@@ -31,6 +31,7 @@ model User {
   sessions        Session[]
   accounts        Account[]
   passkeys        Passkey[]
+  GameEditLog     GameEditLog[]
 
   @@unique([email])
   @@unique([username])
@@ -100,16 +101,31 @@ model Passkey {
 }
 
 model Game {
-  id          String   @id @db.Uuid
+  id          String        @id @default(uuid()) @db.Uuid
   name        String
   country     String
   venue       String
+  address     String
   signupStart DateTime
   signupEnd   DateTime
-  GameStart   DateTime
-  GameEnd     DateTime
+  gameStart   DateTime
+  gameEnd     DateTime
+  image       String?
+
+  classes     GameClass[]
+  GameEditLog GameEditLog[]
 
   @@map("game")
+}
+
+model GameClass {
+  gameId    String  @db.Uuid
+  className String
+
+  game      Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@id([gameId, className])
+  @@map("game_class")
 }
 
 model Team {
@@ -117,4 +133,43 @@ model Team {
   name String
 
   @@map("team")
+}
+
+// TODO: 關聯Game和Team
+/**
+ * model signup {
+ * @@map("signup")
+ * }
+ */
+
+model GameEditLog {
+  id     String @id @default(uuid()) @db.Uuid
+  gameId String @db.Uuid
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  editorId      String
+  editorName    String
+  field         String
+  oldValue      String?
+  newValue      String?
+  editedAt      DateTime        @default(now())
+  User          User?           @relation(fields: [userId], references: [id])
+  userId        String?
+  GameEditField GameEditField[]
+
+  @@index([gameId])
+  @@index([editorId])
+  @@map("game_edit_log")
+}
+
+model GameEditField {
+  id       String      @id @default(uuid()) @db.Uuid
+  logId    String      @db.Uuid
+  log      GameEditLog @relation(fields: [logId], references: [id], onDelete: Cascade)
+  field    String
+  oldValue String?
+  newValue String?
+
+  @@index([logId])
+  @@map("game_edit_field")
 }

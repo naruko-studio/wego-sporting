@@ -173,11 +173,15 @@ const navigationMenuItems = ref<NavigationMenuItem[]>([
   },
   { label: "過往賽事", to: "/end-games" },
 ])
+const now = useNow()
+const formattedNow = computed(() =>
+  new Date(now.value).toLocaleString("zh-TW", { hour12: false }),
+)
 </script>
 
 <template>
   <div class="flex min-h-dvh flex-col">
-    <UHeader mode="slideover">
+    <UHeader mode="slideover" :container="false">
       <template #title>test</template>
       <template #default>
         <UNavigationMenu :items="navigationMenuItems" />
@@ -192,17 +196,28 @@ const navigationMenuItems = ref<NavigationMenuItem[]>([
       </template>
     </UHeader>
     <UMain>
-      <UContainer>
-        <div class="py-4 sm:py-6 lg:py-8">
-          <slot />
-        </div>
-      </UContainer>
+      <UPage>
+        <UBanner :title="'現在系統時間：' + formattedNow" class="z-10" />
+        <UPageBody>
+          <UContainer>
+            <div class="py-4 sm:py-6 lg:py-8">
+              <slot />
+            </div>
+          </UContainer>
+          <template #right>
+            <UPageAside>
+              <slot name="toc" />
+            </UPageAside>
+          </template>
+        </UPageBody>
+        <slot name="footer" />
+      </UPage>
     </UMain>
     <UFooter>
       <template #left>
         <Copyright />
       </template>
-      <template #default>ads</template>
+      <template #default>my ads</template>
       <template #right>social</template>
       <template #top>
         <div class="items-center text-center">ads</div>

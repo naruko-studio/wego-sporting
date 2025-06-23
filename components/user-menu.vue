@@ -9,19 +9,16 @@ const dropdownMenuItems = computed<DropdownMenuItem[][]>(() => {
 
   const items: DropdownMenuItem[][] = [
     [
-      {
-        label: `登入中的使用者 ${user?.name ?? "未知使用者"}`,
-        type: "label",
-      },
-    ],
-    [
-      { label: "Profile", to: "/profile" },
-      { label: "Settings", to: "/settings" },
+      { label: `登入中的使用者 ${user?.name ?? "未知使用者"}`, type: "label" },
+      { label: "編輯資訊", to: "/profile" },
     ],
   ]
 
-  // 只有 admin 才顯示 Dashboard 項目
-  if (user?.role === "admin") {
+  if (user?.role === "leader" || user?.role === "owner") {
+    items.push([{ label: "前往隊伍控制台", to: "/team" }])
+  }
+
+  if (user?.role === "admin" || user?.role === "owner") {
     items.push([{ label: "前往後台", to: "/dashboard" }])
   }
 

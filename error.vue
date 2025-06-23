@@ -42,18 +42,20 @@ const appConfig = useAppConfig()
 
 const toast = useToast()
 
-toast.add({
-  title: "請將此畫面截圖並回報給我們",
-  actions: [
-    {
-      label: "回報",
-      icon: "i-lucide-message-square-plus",
-      to: "mailto:naruko@naruko.studio",
-    },
-  ],
-  color: "warning",
-  duration: 0,
-})
+if (props.error.statusCode === 500) {
+  toast.add({
+    title: "請將此畫面截圖並回報給我們",
+    actions: [
+      {
+        label: "回報",
+        icon: "i-lucide-message-square-plus",
+        to: "mailto:naruko@naruko.studio",
+      },
+    ],
+    color: "warning",
+    duration: 0,
+  })
+}
 </script>
 
 <template>
@@ -61,10 +63,11 @@ toast.add({
     <UError
       :error="customError"
       :clear="{
-        label: '回首頁',
+        label: '回前一頁',
         size: 'xl',
         icon: 'i-lucide-arrow-left',
         color: 'warning',
+        onClick: () => useRouter().back(),
       }"
       color="warning"
     />

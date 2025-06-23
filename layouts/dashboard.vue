@@ -6,6 +6,8 @@ const session = await authClient.getSession()
 
 const collapsed = ref(false)
 
+const config = useRuntimeConfig()
+
 const { data: userCountData } = await useFetch("/api/user/count")
 const { data: gameCountData } = await useFetch("/api/game/count")
 const userCount = userCountData.value?.count ?? 0
@@ -41,14 +43,13 @@ const navigationMenuItems: NavigationMenuItem[][] = [
     {
       label: "聯絡作者",
       icon: "i-lucide-message-circle-plus",
-      to: "mailto:naruko@naruko.studio",
+      to: config.public.authorEmail,
       target: "_blank",
     },
   ],
 ]
 
 const dropdownMenuItems: DropdownMenuItem[][] = [
-  [],
   [
     {
       label: "個人資料",
@@ -70,15 +71,19 @@ const dropdownMenuItems: DropdownMenuItem[][] = [
     },
   ],
 ]
+
+// const now = useNow()
+// const formattedNow = computed(() =>
+//   new Date(now.value).toLocaleString("zh-TW", { hour12: false }),
+// )
 </script>
 
 <template>
-  <div class="flex h-screen overflow-hidden">
+  <UDashboardGroup>
     <UDashboardSidebar
       v-model:collapsed="collapsed"
       collapsible
       mode="slideover"
-      :default-size="18"
       class="shrink-0"
     >
       <div class="flex">
@@ -86,11 +91,11 @@ const dropdownMenuItems: DropdownMenuItem[][] = [
         <p v-if="!collapsed" class="text-sm">
           競賽報名系統後台<br />by
           <ULink
-            href="https://naruko.studio"
+            :href="config.public.authorUrl"
             target="_blank"
             inactive-class="text-secondary"
           >
-            星月なるこ
+            {{ config.public.authorName }}
           </ULink>
         </p>
       </div>
@@ -110,22 +115,23 @@ const dropdownMenuItems: DropdownMenuItem[][] = [
       <template #footer>
         <UDropdownMenu :items="dropdownMenuItems" :content="{ side: 'bottom' }">
           <UButton
-            :avatar="{ src: session?.data?.user.image ?? '' }"
+            :avatar="{
+              src: session?.data?.user.image ?? undefined,
+              alt: session?.data?.user.name ?? undefined,
+            }"
             :label="collapsed ? undefined : (session?.data?.user.name ?? '')"
             color="neutral"
             variant="ghost"
             class="w-full"
             :block="collapsed"
-            trailing-icon="i-lucide-chevron-up"
+            :trailing-icon="collapsed ? undefined : 'i-lucide-chevron-up'"
           />
         </UDropdownMenu>
       </template>
     </UDashboardSidebar>
-
-    <div class="flex-1 overflow-y-auto">
-      <UContainer class="px-4 py-6">
-        <slot />
-      </UContainer>
-    </div>
-  </div>
+    <UContainer class="overflow-auto py-6">
+      <slot />
+      <!-- <UBanner :title="'現在系統時間：' + formattedNow" /> -->
+    </UContainer>
+  </UDashboardGroup>
 </template>

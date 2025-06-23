@@ -1,31 +1,16 @@
 <script lang="ts" setup>
 import { h, resolveComponent } from "vue"
 import type { TableColumn } from "@nuxt/ui"
+import type { User } from "~/types/user"
 
 const UAvatar = resolveComponent("UAvatar")
 const toast = useToast()
 const UButton = resolveComponent("UButton")
 
-type User = {
-  id: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image: string
-  createdAt: Date
-  updatedAt: Date
-  role: string
-  banned: boolean
-  banReason: string
-  banExpires: Date
-  username: string
-  displayUsername: string
-}
-const { data, status } = await useFetch<User[]>("/api/user", {
-  key: "id",
+const { data, status } = useFetch<User[]>("/api/user", {
   transform: (data) => data || [],
-  lazy: true,
 })
+
 const columns: TableColumn<User>[] = [
   {
     accessorKey: "image",

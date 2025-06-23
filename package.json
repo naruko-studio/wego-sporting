@@ -16,22 +16,22 @@
     "@nuxt/eslint": "1.4.1",
     "@nuxt/image": "1.10.0",
     "@nuxt/ui-pro": "3.1.3",
-    "@prisma/client": "^6.9.0",
-    "better-auth": "^1.2.9",
-    "eslint": "^9.28.0",
+    "@prisma/client": "^6.10.1",
+    "better-auth": "^1.2.10",
+    "eslint": "9.29.0",
     "nuxt": "^3.17.5",
     "typescript": "^5.8.3",
-    "vue": "^3.5.16",
+    "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.48",
-    "@iconify-json/simple-icons": "^1.2.38",
+    "@iconify-json/lucide": "^1.2.51",
+    "@iconify-json/simple-icons": "^1.2.39",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.4.1",
+    "eslint-plugin-prettier": "^5.5.0",
     "husky": "^9.1.7",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.12",
-    "prisma": "^6.9.0"
+    "prettier": "^3.6.0",
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "prisma": "^6.10.1"
   }
 }

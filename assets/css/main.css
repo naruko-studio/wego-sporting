@@ -1,6 +1,86 @@
 @import "tailwindcss";
 @import "@nuxt/ui-pro";
 
+@theme {
+  --color-catppuccin-rosewater-500: oklch(71.74116013% 0.103366074 33.35597777);
+  --color-catppuccin-flamingo-500: oklch(68.67327405% 0.125864798 20.85695994);
+  --color-catppuccin-pink-500: oklch(72.54136483% 0.173187324 338.3890943);
+  --color-catppuccin-mauve-500: oklch(55.42258565% 0.250384687 296.9555577);
+  --color-catppuccin-red-500: oklch(54.99871148% 0.215493976 19.80344757);
+  --color-catppuccin-maroon-500: oklch(62.7249899% 0.194667779 20.26704716);
+  --color-catppuccin-peach-500: oklch(69.19999436% 0.203582183 42.52171424);
+  --color-catppuccin-yellow-500: oklch(70.99120829% 0.148453841 67.88986932);
+  --color-catppuccin-green-500: oklch(62.83370713% 0.178430048 140.3879357);
+  --color-catppuccin-teal-500: oklch(61.01024547% 0.099485817 200.6473803);
+  --color-catppuccin-sky-500: oklch(68.68248871% 0.145810416 235.3248207);
+  --color-catppuccin-sapphire-500: oklch(64.96485523% 0.10724385 213.2067257);
+  --color-catppuccin-blue-500: oklch(55.85743771% 0.224516164 262.1352355);
+  --color-catppuccin-lavender-500: oklch(66.41151006% 0.174673158 273.2104687);
+  --color-catppuccin-text-500: oklch(43.11747591% 0.04260469 279.5111928);
+  --color-catppuccin-subtext-1-500: oklch(48.8779718% 0.038605085 278.9744532);
+  --color-catppuccin-subtext-0-500: oklch(54.57513834% 0.033047387 279.3130378);
+  --color-catppuccin-overlay-2-500: oklch(59.88522493% 0.031722817 278.4862364);
+  --color-catppuccin-overlay-1-500: oklch(65.37963916% 0.026568402 277.6966039);
+  --color-catppuccin-overlay-0-500: oklch(70.71717744% 0.023238899 274.6089522);
+  --color-catppuccin-surface-2-500: oklch(75.85521969% 0.020275004 273.5467487);
+  --color-catppuccin-surface-1-500: oklch(80.90919928% 0.017850199 271.1924452);
+  --color-catppuccin-surface-0-500: oklch(85.95029768% 0.014370262 268.6673689);
+  --color-catppuccin-base-500: oklch(95.85881342% 0.005635575 264.5325933);
+  --color-catppuccin-mantle-500: oklch(93.37753109% 0.008689726 264.520685);
+  --color-catppuccin-crust-500: oklch(90.89821103% 0.011492245 264.5082117);
+  --color-catppuccin-rosewater-400: oklch(92.1276726% 0.024395175 31.11280359);
+  --color-catppuccin-flamingo-400: oklch(88.30547915% 0.040734881 17.94985422);
+  --color-catppuccin-pink-400: oklch(86.94092407% 0.076113371 335.9867457);
+  --color-catppuccin-mauve-400: oklch(78.65216413% 0.11908172 304.4461735);
+  --color-catppuccin-red-400: oklch(75.66607121% 0.128906191 2.439476239);
+  --color-catppuccin-maroon-400: oklch(77.81109881% 0.092081701 8.48776514);
+  --color-catppuccin-peach-400: oklch(82.05499471% 0.103518155 52.64947736);
+  --color-catppuccin-yellow-400: oklch(91.77836819% 0.070617852 85.98523383);
+  --color-catppuccin-green-400: oklch(85.74645321% 0.109094806 142.526179);
+  --color-catppuccin-teal-400: oklch(85.63717893% 0.079656153 182.722927);
+  --color-catppuccin-sky-400: oklch(84.766766% 0.083297784 209.9252304);
+  --color-catppuccin-sapphire-400: oklch(78.83279619% 0.096783784 229.633068);
+  --color-catppuccin-blue-400: oklch(76.81358314% 0.110621598 259.6615445);
+  --color-catppuccin-lavender-400: oklch(81.53769875% 0.091401697 277.398158);
+  --color-catppuccin-text-400: oklch(87.84298226% 0.042632164 272.0939985);
+  --color-catppuccin-subtext-1-400: oklch(81.6650729% 0.040228038 273.2477288);
+  --color-catppuccin-subtext-0-400: oklch(75.22371273% 0.040100707 274.3158935);
+  --color-catppuccin-overlay-2-400: oklch(68.90459278% 0.037335693 274.3028984);
+  --color-catppuccin-overlay-1-400: oklch(61.22416184% 0.0380388 276.3187429);
+  --color-catppuccin-overlay-0-400: oklch(54.51384988% 0.035196412 277.2962912);
+  --color-catppuccin-surface-2-400: oklch(47.42295803% 0.03413019 279.104801);
+  --color-catppuccin-surface-1-400: oklch(40.27785529% 0.031140269 279.928692);
+  --color-catppuccin-surface-0-400: oklch(32.4796382% 0.031555628 282.1347975);
+  --color-catppuccin-base-400: oklch(24.38182366% 0.030450992 283.9132412);
+  --color-catppuccin-mantle-400: oklch(21.6189235% 0.02510869 284.1033834);
+  --color-catppuccin-crust-400: oklch(18.61446955% 0.0214114 284.1274629);
+}
+
 :root {
   --ui-radius: 0.5rem;
+  --ui-signup-waiting: var(--color-catppuccin-gray-500);
+  --ui-signup-start: var(--color-catppuccin-green-500);
+  --ui-signup-end: var(--color-catppuccin-yellow-500);
+  --ui-game-start: var(--color-catppuccin-lime-500);
+  --ui-game-end: var(--color-catppuccin-blue-500);
+  --ui-gender-m: var(--color-catppuccin-blue-500);
+  --ui-gender-f: var(--color-catppuccin-red-500);
+}
+.dark {
+  --ui-signup-waiting: var(--color-catppuccin-gray-400);
+  --ui-signup-start: var(--color-catppuccin-green-400);
+  --ui-signup-end: var(--color-catppuccin-yellow-400);
+  --ui-game-start: var(--color-catppuccin-lime-400);
+  --ui-game-end: var(--color-catppuccin-blue-400);
+  --ui-gender-m: var(--color-catppuccin-blue-400);
+  --ui-gender-f: var(--color-catppuccin-red-400);
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none; /* IE 和 Edge */
+  scrollbar-width: none; /* Firefox */
 }

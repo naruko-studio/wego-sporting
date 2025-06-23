@@ -43,7 +43,11 @@ const rel = relList.join(" ")
 </script>
 
 <template>
-  <a :href="props.url" target="_blank" :rel="rel">
-    {{ props.text }}
-  </a>
+  <ULink
+    :href="props.url"
+    target="_blank"
+    :rel="rel"
+    class="text-default hover:text-primary"
+    >{{ props.text }}</ULink
+  >
 </template>

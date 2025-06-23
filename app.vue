@@ -15,7 +15,26 @@ const layout = computed<LayoutKey>(() => {
       return "default"
   }
 })
+
+const currentTime = ref(Date.now())
+provide("currentTime", currentTime)
+
+onMounted(() => {
+  const timer = setInterval(() => {
+    currentTime.value = Date.now()
+  }, 1000)
+
+  onUnmounted(() => {
+    clearInterval(timer)
+  })
+})
+useHead({
+  htmlAttrs: {
+    lang: "zh-Hant-TW",
+  },
+})
 </script>
+
 <template>
   <div>
     <NuxtRouteAnnouncer />
